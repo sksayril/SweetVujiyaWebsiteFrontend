@@ -14,7 +14,7 @@ const Testimonials = () => {
       location: 'Mumbai',
       rating: 5,
       text: 'Absolutely incredible sweets! The Kaju Katli reminds me of my grandmother\'s recipes. Pure quality and authentic taste.',
-      avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80'
+      avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face'
     },
     {
       id: 2,
@@ -22,7 +22,7 @@ const Testimonials = () => {
       location: 'Delhi',
       rating: 5,
       text: 'Best namkeen in the city! Fresh, crispy, and perfectly spiced. Their mixture is now a staple in our household.',
-      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80'
+      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face'
     },
     {
       id: 3,
@@ -30,7 +30,7 @@ const Testimonials = () => {
       location: 'Bangalore',
       rating: 5,
       text: 'Outstanding quality and service! Ordered for Diwali celebration and everyone was amazed by the freshness and taste.',
-      avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80'
+      avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face'
     },
     {
       id: 4,
@@ -38,7 +38,7 @@ const Testimonials = () => {
       location: 'Pune',
       rating: 5,
       text: 'Traditional flavors with modern packaging. The Gulab Jamuns are simply divine - soft, sweet, and perfect!',
-      avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80'
+      avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face'
     }
   ];
 
@@ -117,11 +117,22 @@ const Testimonials = () => {
                 <Quote className="absolute top-4 right-4 h-8 w-8 text-gray-300" />
                 
                 <div className="flex items-center mb-6">
-                  <img
-                    src={testimonial.avatar}
-                    alt={testimonial.name}
-                    className="w-16 h-16 rounded-full object-cover border-4 border-gray-300"
-                  />
+                  <div className="w-16 h-16 rounded-full border-4 border-gray-300 overflow-hidden bg-gray-100 flex items-center justify-center">
+                    <img
+                      src={testimonial.avatar}
+                      alt={testimonial.name}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = 'none';
+                        target.parentElement!.innerHTML = `
+                          <div class="w-full h-full bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center">
+                            <span class="text-gray-600 font-bold text-lg">${testimonial.name.charAt(0)}</span>
+                          </div>
+                        `;
+                      }}
+                    />
+                  </div>
                   <div className="ml-4">
                     <h4 className="text-lg font-semibold text-gray-900">{testimonial.name}</h4>
                     <p className="text-gray-500">{testimonial.location}</p>

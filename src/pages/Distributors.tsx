@@ -256,28 +256,36 @@ const Distributors = () => {
       location: 'Mumbai, Maharashtra',
       rating: 4.9,
       experience: '5+ years',
-      specialties: ['Premium Sweets', 'Corporate Gifting']
+      specialties: ['Premium Sweets', 'Corporate Gifting'],
+      shopImage: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop',
+      shopName: 'Sweet Dreams Store'
     },
     {
       name: 'Golden Foods Network',
       location: 'Delhi, NCR',
       rating: 4.8,
       experience: '3+ years',
-      specialties: ['Traditional Sweets', 'Festival Specials']
+      specialties: ['Traditional Sweets', 'Festival Specials'],
+      shopImage: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400&h=300&fit=crop',
+      shopName: 'Golden Foods Market'
     },
     {
       name: 'Royal Namkeen Co.',
       location: 'Bangalore, Karnataka',
       rating: 4.7,
       experience: '4+ years',
-      specialties: ['Namkeen', 'Snack Foods']
+      specialties: ['Namkeen', 'Snack Foods'],
+      shopImage: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop',
+      shopName: 'Royal Namkeen Store'
     },
     {
       name: 'Heritage Sweets Ltd.',
       location: 'Chennai, Tamil Nadu',
       rating: 4.9,
       experience: '6+ years',
-      specialties: ['Regional Sweets', 'Export Quality']
+      specialties: ['Regional Sweets', 'Export Quality'],
+      shopImage: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop',
+      shopName: 'Heritage Sweets Shop'
     }
   ];
 
@@ -405,30 +413,56 @@ const Distributors = () => {
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-200"
+                className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-200 group"
               >
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center space-x-1">
-                    <Star className="h-4 w-4 text-gray-400 fill-current" />
-                    <span className="text-sm font-semibold text-gray-700">{distributor.rating}</span>
+                {/* Shop Image */}
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={distributor.shopImage}
+                    alt={distributor.shopName}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                      target.parentElement!.innerHTML = `
+                        <div class="w-full h-full bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center">
+                          <div class="text-center">
+                            <Building2 class="h-12 w-12 text-gray-500 mx-auto mb-2" />
+                            <span class="text-gray-600 font-semibold">${distributor.shopName}</span>
+                          </div>
+                        </div>
+                      `;
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+                  
+                  {/* Rating Badge */}
+                  <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full flex items-center space-x-1">
+                    <Star className="h-3 w-3 text-yellow-500 fill-current" />
+                    <span className="text-xs font-semibold text-gray-700">{distributor.rating}</span>
                   </div>
-                  <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-full">
+                  
+                  {/* Experience Badge */}
+                  <div className="absolute top-3 left-3 bg-gray-800/90 text-white px-2 py-1 rounded-full text-xs">
                     {distributor.experience}
-                  </span>
+                  </div>
                 </div>
                 
-                <h3 className="font-bold text-gray-900 mb-2">{distributor.name}</h3>
-                <p className="text-sm text-gray-600 mb-3 flex items-center">
-                  <MapPin className="h-3 w-3 mr-1" />
-                  {distributor.location}
-                </p>
-                
-                <div className="space-y-1">
-                  {distributor.specialties.map((specialty, idx) => (
-                    <span key={idx} className="inline-block text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-full mr-1 mb-1">
-                      {specialty}
-                    </span>
-                  ))}
+                {/* Content */}
+                <div className="p-6">
+                  <h3 className="font-bold text-gray-900 mb-2 text-lg">{distributor.name}</h3>
+                  <p className="text-sm text-gray-600 mb-3 flex items-center">
+                    <MapPin className="h-3 w-3 mr-1" />
+                    {distributor.location}
+                  </p>
+                  
+                  <div className="space-y-2">
+                    {distributor.specialties.map((specialty, idx) => (
+                      <span key={idx} className="inline-block text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-full mr-1">
+                        {specialty}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </motion.div>
             ))}
