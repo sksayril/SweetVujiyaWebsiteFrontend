@@ -7,19 +7,41 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-coverflow';
 
+interface SpiceLevel {
+  level: string;
+  color: string;
+  bgColor: string;
+}
+
+interface NamkeenItem {
+  id: number;
+  name: string;
+  category: string;
+  image: string;
+  price: string;
+  originalPrice: string;
+  rating: number;
+  reviews: number;
+  description: string;
+  spiceLevel: string;
+  ingredients: string;
+  weight: string;
+  shelfLife: string;
+}
+
 const Namkeen = () => {
-  const spiceLevels = [
+  const spiceLevels: SpiceLevel[] = [
     { level: 'Mild', color: 'text-green-500', bgColor: 'bg-green-100' },
     { level: 'Medium', color: 'text-yellow-500', bgColor: 'bg-yellow-100' },
     { level: 'Hot', color: 'text-red-500', bgColor: 'bg-red-100' }
   ];
 
-  const namkeenItems = [
+  const namkeenItems: NamkeenItem[] = [
     {
       id: 1,
       name: 'Premium Mixture',
       category: 'Spicy Mix',
-      image: 'https://images.unsplash.com/photo-1626132647523-66f57bf5cb71?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+      image: 'https://i.pinimg.com/736x/8a/eb/a3/8aeba37ada5a0eaefaca02b3ad32cdfd.jpg',
       price: '₹180',
       originalPrice: '₹200',
       rating: 4.6,
@@ -34,7 +56,7 @@ const Namkeen = () => {
       id: 2,
       name: 'Aloo Bhujia',
       category: 'Classic',
-      image: 'https://images.unsplash.com/photo-1626132647523-66f57bf5cb71?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+      image: 'https://i.pinimg.com/736x/07/3e/2c/073e2c06b404905710c315f3f5b7df02.jpg',
       price: '₹150',
       originalPrice: '₹170',
       rating: 4.7,
@@ -49,7 +71,7 @@ const Namkeen = () => {
       id: 3,
       name: 'Samosa',
       category: 'Fried Snacks',
-      image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+      image: 'https://i.pinimg.com/736x/92/f5/86/92f586ad41e93f164a4c38a990dc1b83.jpg',
       price: '₹200',
       originalPrice: '₹220',
       rating: 4.8,
@@ -64,7 +86,7 @@ const Namkeen = () => {
       id: 4,
       name: 'Khakhra',
       category: 'Healthy Snacks',
-      image: 'https://images.unsplash.com/photo-1626132647523-66f57bf5cb71?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+      image: 'https://i.pinimg.com/1200x/5e/48/d2/5e48d20bc1fba6ba8da5805270322551.jpg',
       price: '₹120',
       originalPrice: '₹140',
       rating: 4.5,
@@ -79,7 +101,7 @@ const Namkeen = () => {
       id: 5,
       name: 'Papdi Chaat Mix',
       category: 'Chaat Special',
-      image: 'https://images.unsplash.com/photo-1626132647523-66f57bf5cb71?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+      image: 'https://i.pinimg.com/736x/91/67/02/91670220b08b0ab742c664df4a660176.jpg',
       price: '₹250',
       originalPrice: '₹280',
       rating: 4.9,
@@ -94,7 +116,7 @@ const Namkeen = () => {
       id: 6,
       name: 'Mathri',
       category: 'Traditional',
-      image: 'https://images.unsplash.com/photo-1626132647523-66f57bf5cb71?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+      image: 'https://i.pinimg.com/1200x/81/e9/77/81e97751ca4bbc89bc5e2a2852d542ca.jpg',
       price: '₹160',
       originalPrice: '₹180',
       rating: 4.4,
@@ -107,7 +129,7 @@ const Namkeen = () => {
     }
   ];
 
-  const getSpiceLevelInfo = (level) => {
+  const getSpiceLevelInfo = (level: string): SpiceLevel => {
     return spiceLevels.find(s => s.level === level) || spiceLevels[0];
   };
 
@@ -122,7 +144,7 @@ const Namkeen = () => {
           className="text-center mb-12"
         >
           <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
-            Crispy <span className="bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">Namkeen</span>
+            Crispy <span className="bg-gradient-to-r from-gray-800 to-black bg-clip-text text-transparent">Namkeen</span>
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Savor the authentic taste of India's favorite savory snacks, 
@@ -135,12 +157,12 @@ const Namkeen = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-gradient-to-r from-orange-100 to-red-100 rounded-2xl p-6 mb-12"
+          className="bg-gradient-to-r from-gray-100 to-gray-200 rounded-2xl p-6 mb-12"
         >
           <h2 className="text-2xl font-bold text-gray-900 mb-4 text-center flex items-center justify-center space-x-2">
-            <Flame className="h-6 w-6 text-orange-500" />
+            <Flame className="h-6 w-6 text-gray-700" />
             <span>Spice Level Guide</span>
-            <Flame className="h-6 w-6 text-red-500" />
+            <Flame className="h-6 w-6 text-gray-800" />
           </h2>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             {spiceLevels.map((spice, index) => (
@@ -210,7 +232,7 @@ const Namkeen = () => {
                       alt={item.name}
                       className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                     />
-                    <div className="absolute top-4 left-4 bg-gradient-to-r from-orange-500 to-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                    <div className="absolute top-4 left-4 bg-gradient-to-r from-gray-800 to-black text-white px-3 py-1 rounded-full text-sm font-semibold">
                       {item.category}
                     </div>
                     <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm p-2 rounded-full">
@@ -224,11 +246,11 @@ const Namkeen = () => {
                     <h3 className="text-lg font-bold text-gray-900 mb-2">{item.name}</h3>
                     <p className="text-gray-600 text-sm mb-3">{item.description}</p>
                     <div className="flex items-center justify-between">
-                      <span className="text-xl font-bold bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">
+                      <span className="text-xl font-bold bg-gradient-to-r from-gray-800 to-black bg-clip-text text-transparent">
                         {item.price}
                       </span>
                       <div className="flex items-center space-x-1">
-                        <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                        <Star className="h-4 w-4 text-gray-400 fill-current" />
                         <span className="text-sm text-gray-600">{item.rating}</span>
                       </div>
                     </div>
@@ -255,18 +277,18 @@ const Namkeen = () => {
                   alt={item.name}
                   className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute top-4 left-4 bg-gradient-to-r from-orange-500 to-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                <div className="absolute top-4 left-4 bg-gradient-to-r from-gray-800 to-black text-white px-3 py-1 rounded-full text-sm font-semibold">
                   {item.category}
                 </div>
                 <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm p-2 rounded-full">
-                  <Heart className="h-5 w-5 text-gray-400 hover:text-red-500 transition-colors cursor-pointer" />
+                  <Heart className="h-5 w-5 text-gray-400 hover:text-gray-600 transition-colors cursor-pointer" />
                 </div>
                 <div className={`absolute bottom-4 left-4 px-3 py-1 rounded-full text-sm font-semibold flex items-center space-x-1 ${getSpiceLevelInfo(item.spiceLevel).bgColor} ${getSpiceLevelInfo(item.spiceLevel).color}`}>
                   <Flame className="h-4 w-4" />
                   <span>{item.spiceLevel}</span>
                 </div>
                 {item.originalPrice && (
-                  <div className="absolute bottom-4 right-4 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-semibold">
+                  <div className="absolute bottom-4 right-4 bg-gray-800 text-white px-2 py-1 rounded-full text-xs font-semibold">
                     SAVE ₹{parseInt(item.originalPrice.slice(1)) - parseInt(item.price.slice(1))}
                   </div>
                 )}
@@ -276,7 +298,7 @@ const Namkeen = () => {
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="text-xl font-bold text-gray-900">{item.name}</h3>
                   <div className="flex items-center space-x-1">
-                    <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                    <Star className="h-4 w-4 text-gray-400 fill-current" />
                     <span className="text-sm text-gray-600">{item.rating}</span>
                     <span className="text-xs text-gray-400">({item.reviews})</span>
                   </div>
@@ -300,7 +322,7 @@ const Namkeen = () => {
                 
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
-                    <span className="text-2xl font-bold bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">
+                    <span className="text-2xl font-bold bg-gradient-to-r from-gray-800 to-black bg-clip-text text-transparent">
                       {item.price}
                     </span>
                     {item.originalPrice && (
@@ -309,7 +331,7 @@ const Namkeen = () => {
                       </span>
                     )}
                   </div>
-                  <button className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2">
+                  <button className="bg-gradient-to-r from-gray-800 to-black hover:from-gray-900 hover:to-black text-white px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2">
                     <ShoppingCart className="h-4 w-4" />
                     <span>Add to Cart</span>
                   </button>
@@ -324,17 +346,17 @@ const Namkeen = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="bg-gradient-to-r from-red-500 to-orange-500 rounded-2xl p-8 text-white text-center"
+          className="bg-gradient-to-r from-gray-800 to-black rounded-2xl p-8 text-white text-center"
         >
           <h2 className="text-3xl font-bold mb-4">Bulk Orders & Party Packs! 🎉</h2>
           <p className="text-xl mb-6 opacity-90">
             Planning a party or event? Get special discounts on bulk orders above ₹2000
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-red-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-100 transition-colors duration-300 transform hover:scale-105">
+            <button className="bg-white text-gray-800 px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-100 transition-colors duration-300 transform hover:scale-105">
               Contact for Bulk Orders
             </button>
-            <button className="border-2 border-white text-white hover:bg-white hover:text-red-600 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105">
+            <button className="border-2 border-white text-white hover:bg-white hover:text-gray-800 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105">
               View Party Combos
             </button>
           </div>

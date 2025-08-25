@@ -11,7 +11,7 @@ const AboutSection = () => {
   ];
 
   return (
-    <section className="py-16 bg-gradient-to-r from-orange-900 via-red-900 to-orange-800 text-white">
+    <section className="py-16 bg-gradient-to-r from-gray-900 via-black to-gray-800 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div
@@ -20,27 +20,27 @@ const AboutSection = () => {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-4xl sm:text-5xl font-bold mb-6">
-              Crafting <span className="text-yellow-400">Sweet Memories</span> Since 1999
+              Crafting <span className="text-gray-300">Sweet Memories</span> Since 1999
             </h2>
-            <p className="text-xl text-orange-100 mb-8 leading-relaxed">
+            <p className="text-xl text-gray-200 mb-8 leading-relaxed">
               At  Krishna & Kanha Sales Enterprises, we believe that every sweet tells a story. Our journey began with a simple 
               mission: to bring authentic Indian flavors to your doorstep using time-honored recipes 
               and the finest ingredients.
             </p>
-            <p className="text-lg text-orange-200 mb-8 leading-relaxed">
+            <p className="text-lg text-gray-300 mb-8 leading-relaxed">
               From traditional festivals to modern celebrations, our handcrafted sweets and namkeen 
               have been part of countless joyous moments. We take pride in maintaining the authentic 
               taste while adapting to contemporary quality standards.
             </p>
             <div className="flex flex-wrap gap-4">
               <div className="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
-                <span className="text-yellow-400 font-semibold">100% Pure Ingredients</span>
+                <span className="text-gray-300 font-semibold">100% Pure Ingredients</span>
               </div>
               <div className="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
-                <span className="text-yellow-400 font-semibold">Traditional Recipes</span>
+                <span className="text-gray-300 font-semibold">Traditional Recipes</span>
               </div>
               <div className="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
-                <span className="text-yellow-400 font-semibold">Fresh Daily</span>
+                <span className="text-gray-300 font-semibold">Fresh Daily</span>
               </div>
             </div>
           </motion.div>
@@ -60,9 +60,9 @@ const AboutSection = () => {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl text-center hover:bg-white/20 transition-all duration-300"
                 >
-                  <stat.icon className="h-8 w-8 text-yellow-400 mx-auto mb-3" />
+                  <stat.icon className="h-8 w-8 text-gray-300 mx-auto mb-3" />
                   <div className="text-3xl font-bold text-white mb-2">{stat.value}</div>
-                  <div className="text-orange-200 text-sm">{stat.label}</div>
+                  <div className="text-gray-300 text-sm">{stat.label}</div>
                 </motion.div>
               ))}
             </div>
@@ -77,7 +77,7 @@ const AboutSection = () => {
                 repeat: Infinity,
                 ease: "linear"
               }}
-              className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full opacity-20"
+              className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-r from-gray-400 to-gray-600 rounded-full opacity-20"
             />
             <motion.div
               animate={{
@@ -88,7 +88,7 @@ const AboutSection = () => {
                 repeat: Infinity,
                 ease: "linear"
               }}
-              className="absolute -bottom-4 -left-4 w-12 h-12 bg-gradient-to-r from-orange-400 to-red-400 rounded-full opacity-20"
+              className="absolute -bottom-4 -left-4 w-12 h-12 bg-gradient-to-r from-gray-600 to-gray-800 rounded-full opacity-20"
             />
           </motion.div>
         </div>

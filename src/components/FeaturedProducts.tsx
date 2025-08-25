@@ -73,11 +73,11 @@ const FeaturedProducts = () => {
   ];
 
   return (
-    <section className="relative py-20 bg-gradient-to-br from-orange-50 via-white to-yellow-50 overflow-hidden">
+    <section className="relative py-20 bg-gradient-to-br from-gray-50 via-white to-gray-100 overflow-hidden">
       {/* Premium background elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-orange-100/20 via-transparent to-yellow-100/20" />
-      <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-orange-200/30 to-yellow-200/30 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-yellow-200/30 to-orange-200/30 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-100/20 via-transparent to-gray-200/20" />
+      <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-gray-200/30 to-gray-300/30 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-gray-300/30 to-gray-200/30 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -92,7 +92,7 @@ const FeaturedProducts = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="inline-block mb-6"
           >
-            <span className="inline-block px-6 py-2 bg-gradient-to-r from-orange-100 to-yellow-100 text-orange-800 text-sm font-semibold rounded-full border border-orange-200/50 shadow-sm">
+            <span className="inline-block px-6 py-2 bg-gradient-to-r from-gray-100 to-gray-200 text-gray-800 text-sm font-semibold rounded-full border border-gray-300/50 shadow-sm">
               ✨ Premium Collection
             </span>
           </motion.div>
@@ -100,11 +100,11 @@ const FeaturedProducts = () => {
           <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
             Featured{' '}
             <span className="relative inline-block">
-              <span className="bg-gradient-to-r from-orange-500 via-orange-600 to-yellow-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-gray-700 via-gray-800 to-black bg-clip-text text-transparent">
                 Delicacies
               </span>
               <motion.div
-                className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-orange-400 to-yellow-400 rounded-full"
+                className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-gray-600 to-black rounded-full"
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
@@ -159,7 +159,7 @@ const FeaturedProducts = () => {
                 whileHover={{ scale: 1.02 }}
               >
                 {/* Premium glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-orange-100/50 via-transparent to-yellow-100/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl" />
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-100/50 via-transparent to-gray-200/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl" />
                 
                 <div className="relative overflow-hidden rounded-t-3xl">
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent z-10" />
@@ -191,7 +191,7 @@ const FeaturedProducts = () => {
                   
                   {/* Enhanced category badge */}
                   <motion.div
-                    className="absolute bottom-4 left-4 bg-gradient-to-r from-orange-500 via-orange-600 to-yellow-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg backdrop-blur-sm border border-white/20"
+                    className="absolute bottom-4 left-4 bg-gradient-to-r from-gray-700 via-gray-800 to-black text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg backdrop-blur-sm border border-white/20"
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
@@ -215,12 +215,12 @@ const FeaturedProducts = () => {
                     </motion.h3>
                     
                     <motion.div
-                      className="flex items-center space-x-1 bg-gradient-to-r from-yellow-50 to-orange-50 px-3 py-1 rounded-full border border-yellow-200/50"
+                      className="flex items-center space-x-1 bg-gradient-to-r from-gray-50 to-gray-100 px-3 py-1 rounded-full border border-gray-200/50"
                       initial={{ opacity: 0, scale: 0.8 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.5, delay: index * 0.1 + 0.5 }}
                     >
-                      <Star className="h-4 w-4 text-yellow-500 fill-current" />
+                      <Star className="h-4 w-4 text-gray-600 fill-current" />
                       <span className="text-sm font-semibold text-gray-700">{product.rating}</span>
                     </motion.div>
                   </div>
@@ -236,7 +236,7 @@ const FeaturedProducts = () => {
                   
                   <div className="flex items-center justify-between">
                     <motion.span
-                      className="text-3xl font-bold bg-gradient-to-r from-orange-500 via-orange-600 to-yellow-600 bg-clip-text text-transparent"
+                      className="text-3xl font-bold bg-gradient-to-r from-gray-700 via-gray-800 to-black bg-clip-text text-transparent"
                       initial={{ opacity: 0, x: -10 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.1 + 0.7 }}
@@ -245,7 +245,7 @@ const FeaturedProducts = () => {
                     </motion.span>
                     
                     <motion.button
-                      className="relative bg-gradient-to-r from-orange-500 via-orange-600 to-yellow-500 hover:from-orange-600 hover:via-orange-700 hover:to-yellow-600 text-white px-8 py-3 rounded-full text-sm font-bold transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl overflow-hidden group"
+                      className="relative bg-gradient-to-r from-gray-700 via-gray-800 to-black hover:from-gray-800 hover:via-black hover:to-black text-white px-8 py-3 rounded-full text-sm font-bold transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl overflow-hidden group"
                       initial={{ opacity: 0, x: 10 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.1 + 0.8 }}
@@ -275,7 +275,7 @@ const FeaturedProducts = () => {
           >
             <Link
               to="/products"
-              className="group relative inline-flex items-center space-x-3 bg-gradient-to-r from-orange-500 via-orange-600 to-yellow-500 hover:from-orange-600 hover:via-orange-700 hover:to-yellow-600 text-white px-12 py-5 rounded-full text-lg font-bold transition-all duration-500 transform hover:scale-105 shadow-2xl hover:shadow-3xl overflow-hidden"
+              className="group relative inline-flex items-center space-x-3 bg-gradient-to-r from-gray-700 via-gray-800 to-black hover:from-gray-800 hover:via-black hover:to-black text-white px-12 py-5 rounded-full text-lg font-bold transition-all duration-500 transform hover:scale-105 shadow-2xl hover:shadow-3xl overflow-hidden"
             >
               {/* Premium button background effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-transparent to-white/20 -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
@@ -290,7 +290,7 @@ const FeaturedProducts = () => {
               </motion.div>
               
               {/* Glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-orange-400/50 to-yellow-400/50 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+              <div className="absolute inset-0 bg-gradient-to-r from-gray-600/50 to-black/50 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
             </Link>
           </motion.div>
           
@@ -301,9 +301,9 @@ const FeaturedProducts = () => {
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.8 }}
           >
-            <div className="w-12 h-px bg-gradient-to-r from-transparent to-orange-300" />
+            <div className="w-12 h-px bg-gradient-to-r from-transparent to-gray-400" />
             <span className="text-sm font-medium">Premium Quality Guaranteed</span>
-            <div className="w-12 h-px bg-gradient-to-l from-transparent to-orange-300" />
+            <div className="w-12 h-px bg-gradient-to-l from-transparent to-gray-400" />
           </motion.div>
         </motion.div>
       </div>
