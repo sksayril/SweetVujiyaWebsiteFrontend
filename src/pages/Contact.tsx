@@ -1,6 +1,6 @@
-import React, { useState, FormEvent, ChangeEvent } from 'react';
+import { useState, FormEvent, ChangeEvent } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail, Clock, Send, MessageSquare, AlertCircle, CheckCircle, Instagram, Facebook, ExternalLink, Award, Users, Heart } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, MessageSquare, AlertCircle, CheckCircle, Instagram, Facebook, ExternalLink, Award, Users, Heart, FileText, Download, Eye, X } from 'lucide-react';
 
 interface FormData {
   name: string;
@@ -30,6 +30,7 @@ const Contact = () => {
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [previewPdf, setPreviewPdf] = useState<string | null>(null);
 
   // Input sanitization function
   const sanitizeInput = (input: string): string => {
@@ -159,7 +160,7 @@ const Contact = () => {
     {
       icon: Mail,
       title: 'Email Us',
-      details: ['info@sweetbliss.com', 'orders@sweetbliss.com', 'support@sweetbliss.com'],
+      details: ['info@krishnakanha.com', 'orders@krishnakanha.com', 'support@krishnakanha.com'],
       color: 'text-gray-700',
       bgColor: 'bg-gradient-to-br from-gray-50 to-gray-100',
       borderColor: 'border-gray-200'
@@ -385,6 +386,417 @@ const Contact = () => {
                 </div>
               </motion.a>
             ))}
+          </div>
+        </motion.div>
+
+        {/* Enhanced Documents & Gallery Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="mb-16"
+        >
+          <div className="text-center mb-12">
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="inline-block mb-6"
+            >
+              <span className="inline-block px-6 py-2 bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 text-sm font-semibold rounded-full border border-blue-300/50 shadow-sm">
+                📋 Important Documents
+              </span>
+            </motion.div>
+            <h2 className="text-4xl font-cinzel font-bold text-gray-900 mb-6">
+              Our <span className="bg-gradient-to-r from-gray-800 to-black bg-clip-text text-transparent">Certificates</span>
+            </h2>
+            <p className="text-xl text-gray-600 font-cinzel max-w-3xl mx-auto leading-relaxed">
+              Explore our official certifications, business documents, and important files with interactive previews
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Enhanced Documents Section */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+              className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl p-8 border border-gray-200/50 relative overflow-hidden"
+            >
+              {/* Background Pattern */}
+              <div className="absolute inset-0 opacity-5">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-blue-200 rounded-full -translate-y-32 translate-x-32"></div>
+                <div className="absolute bottom-0 left-0 w-48 h-48 bg-purple-200 rounded-full translate-y-24 -translate-x-24"></div>
+              </div>
+              
+              <div className="relative z-10">
+                <div className="flex items-center space-x-4 mb-8">
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl flex items-center justify-center shadow-lg">
+                    <FileText className="h-8 w-8 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-cinzel font-bold text-gray-900">Important Documents</h3>
+                    <p className="text-gray-600 font-cinzel">Official business certificates and documents</p>
+                  </div>
+                </div>
+                
+                <div className="space-y-6">
+                  {/* IEC Certificate with Background Preview */}
+                  <motion.div
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="group relative bg-gradient-to-r from-blue-50 to-blue-100 rounded-2xl border border-blue-200/50 hover:border-blue-300/50 hover:shadow-xl transition-all duration-500 overflow-hidden"
+                  >
+                    {/* PDF Background Preview */}
+                    <div className="absolute inset-0 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
+                      <iframe
+                        src="/certificateOfIEC.pdf#toolbar=0&navpanes=0&scrollbar=0&zoom=20"
+                        width="100%"
+                        height="100%"
+                        className="border-0 scale-150 origin-top-left"
+                        style={{ pointerEvents: 'none' }}
+                      />
+                    </div>
+                    
+                    <div className="relative z-10 p-6">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-4">
+                          <div className="w-14 h-14 bg-blue-600 rounded-xl flex items-center justify-center group-hover:bg-blue-700 group-hover:scale-110 transition-all duration-300 shadow-lg">
+                            <FileText className="h-7 w-7 text-white" />
+                          </div>
+                          <div>
+                            <h4 className="text-lg font-cinzel font-bold text-gray-900 group-hover:text-blue-800 transition-colors duration-300">
+                              IEC Certificate
+                            </h4>
+                            <p className="text-sm text-gray-600 font-cinzel">Import Export Code Certificate</p>
+                            <div className="flex items-center space-x-2 mt-1">
+                              <span className="text-xs bg-blue-200 text-blue-800 px-2 py-1 rounded-full font-semibold">Official</span>
+                              <span className="text-xs text-gray-500">PDF Document</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex items-center space-x-3">
+                          <motion.button
+                            onClick={() => setPreviewPdf('/certificateOfIEC.pdf')}
+                            whileHover={{ scale: 1.1, y: -2 }}
+                            whileTap={{ scale: 0.9 }}
+                            className="p-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl"
+                            title="Preview PDF"
+                          >
+                            <Eye className="h-5 w-5" />
+                          </motion.button>
+                          <motion.a
+                            href="/certificateOfIEC.pdf"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={{ scale: 1.1, y: -2 }}
+                            whileTap={{ scale: 0.9 }}
+                            className="p-3 bg-gray-800 text-white rounded-xl hover:bg-gray-900 transition-all duration-300 shadow-lg hover:shadow-xl"
+                            title="Download PDF"
+                          >
+                            <Download className="h-5 w-5" />
+                          </motion.a>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* Sale Rate List with Background Preview */}
+                  <motion.div
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="group relative bg-gradient-to-r from-green-50 to-green-100 rounded-2xl border border-green-200/50 hover:border-green-300/50 hover:shadow-xl transition-all duration-500 overflow-hidden"
+                  >
+                    {/* PDF Background Preview */}
+                    <div className="absolute inset-0 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
+                      <iframe
+                        src="/krishna and kanha sale rate list.pdf#toolbar=0&navpanes=0&scrollbar=0&zoom=20"
+                        width="100%"
+                        height="100%"
+                        className="border-0 scale-150 origin-top-left"
+                        style={{ pointerEvents: 'none' }}
+                      />
+                    </div>
+                    
+                    <div className="relative z-10 p-6">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-4">
+                          <div className="w-14 h-14 bg-green-600 rounded-xl flex items-center justify-center group-hover:bg-green-700 group-hover:scale-110 transition-all duration-300 shadow-lg">
+                            <FileText className="h-7 w-7 text-white" />
+                          </div>
+                          <div>
+                            <h4 className="text-lg font-cinzel font-bold text-gray-900 group-hover:text-green-800 transition-colors duration-300">
+                              Sale Rate List
+                            </h4>
+                            <p className="text-sm text-gray-600 font-cinzel">Current pricing for all products</p>
+                            <div className="flex items-center space-x-2 mt-1">
+                              <span className="text-xs bg-green-200 text-green-800 px-2 py-1 rounded-full font-semibold">Updated</span>
+                              <span className="text-xs text-gray-500">PDF Document</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex items-center space-x-3">
+                          <motion.button
+                            onClick={() => setPreviewPdf('/krishna and kanha sale rate list.pdf')}
+                            whileHover={{ scale: 1.1, y: -2 }}
+                            whileTap={{ scale: 0.9 }}
+                            className="p-3 bg-green-600 text-white rounded-xl hover:bg-green-700 transition-all duration-300 shadow-lg hover:shadow-xl"
+                            title="Preview PDF"
+                          >
+                            <Eye className="h-5 w-5" />
+                          </motion.button>
+                          <motion.a
+                            href="/krishna and kanha sale rate list.pdf"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={{ scale: 1.1, y: -2 }}
+                            whileTap={{ scale: 0.9 }}
+                            className="p-3 bg-gray-800 text-white rounded-xl hover:bg-gray-900 transition-all duration-300 shadow-lg hover:shadow-xl"
+                            title="Download PDF"
+                          >
+                            <Download className="h-5 w-5" />
+                          </motion.a>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* Rahul Traders Document with Background Preview */}
+                  <motion.div
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="group relative bg-gradient-to-r from-purple-50 to-purple-100 rounded-2xl border border-purple-200/50 hover:border-purple-300/50 hover:shadow-xl transition-all duration-500 overflow-hidden"
+                  >
+                    {/* PDF Background Preview */}
+                    <div className="absolute inset-0 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
+                      <iframe
+                        src="/RAHUL TRADERS.pdf#toolbar=0&navpanes=0&scrollbar=0&zoom=20"
+                        width="100%"
+                        height="100%"
+                        className="border-0 scale-150 origin-top-left"
+                        style={{ pointerEvents: 'none' }}
+                      />
+                    </div>
+                    
+                    <div className="relative z-10 p-6">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-4">
+                          <div className="w-14 h-14 bg-purple-600 rounded-xl flex items-center justify-center group-hover:bg-purple-700 group-hover:scale-110 transition-all duration-300 shadow-lg">
+                            <FileText className="h-7 w-7 text-white" />
+                          </div>
+                          <div>
+                            <h4 className="text-lg font-cinzel font-bold text-gray-900 group-hover:text-purple-800 transition-colors duration-300">
+                              Rahul Traders
+                            </h4>
+                            <p className="text-sm text-gray-600 font-cinzel">Business partnership document</p>
+                            <div className="flex items-center space-x-2 mt-1">
+                              <span className="text-xs bg-purple-200 text-purple-800 px-2 py-1 rounded-full font-semibold">Partnership</span>
+                              <span className="text-xs text-gray-500">PDF Document</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex items-center space-x-3">
+                          <motion.button
+                            onClick={() => setPreviewPdf('/RAHUL TRADERS.pdf')}
+                            whileHover={{ scale: 1.1, y: -2 }}
+                            whileTap={{ scale: 0.9 }}
+                            className="p-3 bg-purple-600 text-white rounded-xl hover:bg-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl"
+                            title="Preview PDF"
+                          >
+                            <Eye className="h-5 w-5" />
+                          </motion.button>
+                          <motion.a
+                            href="/RAHUL TRADERS.pdf"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={{ scale: 1.1, y: -2 }}
+                            whileTap={{ scale: 0.9 }}
+                            className="p-3 bg-gray-800 text-white rounded-xl hover:bg-gray-900 transition-all duration-300 shadow-lg hover:shadow-xl"
+                            title="Download PDF"
+                          >
+                            <Download className="h-5 w-5" />
+                          </motion.a>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Enhanced Gallery Section */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl p-8 border border-gray-200/50 relative overflow-hidden"
+            >
+              {/* Background Pattern */}
+              <div className="absolute inset-0 opacity-5">
+                <div className="absolute top-0 left-0 w-64 h-64 bg-pink-200 rounded-full -translate-y-32 -translate-x-32"></div>
+                <div className="absolute bottom-0 right-0 w-48 h-48 bg-purple-200 rounded-full translate-y-24 translate-x-24"></div>
+              </div>
+              
+              <div className="relative z-10">
+                <div className="flex items-center space-x-4 mb-8">
+                  <div className="w-16 h-16 bg-gradient-to-br from-pink-600 to-pink-800 rounded-2xl flex items-center justify-center shadow-lg">
+                    <Eye className="h-8 w-8 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-cinzel font-bold text-gray-900">Latest Updates</h3>
+                    <p className="text-gray-600 font-cinzel">Recent photos and updates from our kitchen</p>
+                  </div>
+                </div>
+                
+                <div className="space-y-6">
+                  {/* Featured WhatsApp Image */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.6, delay: 0.9 }}
+                    className="group relative overflow-hidden rounded-2xl border border-gray-200/50 hover:border-pink-300/50 hover:shadow-xl transition-all duration-500"
+                  >
+                    <div className="relative z-10 aspect-video bg-gradient-to-br from-gray-100 to-gray-200">
+                      <img
+                        src="/WhatsApp Image 2025-09-04 at 1.30.55 PM.jpeg"
+                        alt="Latest Update - September 2025"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="bg-white/20 backdrop-blur-sm rounded-lg p-3">
+                          <h4 className="font-cinzel font-semibold text-sm mb-1">Latest Update</h4>
+                          <p className="text-xs opacity-90 font-cinzel">September 4, 2025</p>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* Image Grid in Rows */}
+                  <div className="space-y-4">
+                    {/* First Row - 3 images */}
+                    <div className="grid grid-cols-3 gap-3">
+                      {['/img1.jpeg', '/img2.jpeg', '/img3.jpeg'].map((img, index) => (
+                        <motion.div
+                          key={index}
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.6, delay: 1.0 + index * 0.1 }}
+                          className="group relative overflow-hidden rounded-xl border border-gray-200/50 hover:border-pink-300/50 hover:shadow-lg transition-all duration-300"
+                        >
+                          <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200">
+                            <img
+                              src={img}
+                              alt={`Gallery image ${index + 1}`}
+                              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            <div className="absolute bottom-2 left-2 right-2 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                              <div className="bg-white/20 backdrop-blur-sm rounded-lg p-2">
+                                <p className="text-xs font-cinzel font-semibold">Product Gallery</p>
+                              </div>
+                            </div>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+
+                    {/* Second Row - 3 images */}
+                    <div className="grid grid-cols-3 gap-3">
+                      {['/img4.jpeg', '/img5.jpeg', '/img6.jpeg'].map((img, index) => (
+                        <motion.div
+                          key={index + 3}
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.6, delay: 1.3 + index * 0.1 }}
+                          className="group relative overflow-hidden rounded-xl border border-gray-200/50 hover:border-pink-300/50 hover:shadow-lg transition-all duration-300"
+                        >
+                          <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200">
+                            <img
+                              src={img}
+                              alt={`Gallery image ${index + 4}`}
+                              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            <div className="absolute bottom-2 left-2 right-2 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                              <div className="bg-white/20 backdrop-blur-sm rounded-lg p-2">
+                                <p className="text-xs font-cinzel font-semibold">Product Gallery</p>
+                              </div>
+                            </div>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+
+                    {/* Third Row - 3 images */}
+                    <div className="grid grid-cols-3 gap-3">
+                      {['/img7.jpeg', '/img8.jpeg', '/img9.jpeg'].map((img, index) => (
+                        <motion.div
+                          key={index + 6}
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.6, delay: 1.6 + index * 0.1 }}
+                          className="group relative overflow-hidden rounded-xl border border-gray-200/50 hover:border-pink-300/50 hover:shadow-lg transition-all duration-300"
+                        >
+                          <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200">
+                            <img
+                              src={img}
+                              alt={`Gallery image ${index + 7}`}
+                              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            <div className="absolute bottom-2 left-2 right-2 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                              <div className="bg-white/20 backdrop-blur-sm rounded-lg p-2">
+                                <p className="text-xs font-cinzel font-semibold">Product Gallery</p>
+                              </div>
+                            </div>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+
+                    {/* Fourth Row - 2 images (centered) */}
+                    <div className="grid grid-cols-3 gap-3">
+                      <div></div> {/* Empty space for centering */}
+                      {['/img10 (1).jpeg', '/img11.jpeg'].map((img, index) => (
+                        <motion.div
+                          key={index + 9}
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.6, delay: 1.9 + index * 0.1 }}
+                          className="group relative overflow-hidden rounded-xl border border-gray-200/50 hover:border-pink-300/50 hover:shadow-lg transition-all duration-300"
+                        >
+                          <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200">
+                            <img
+                              src={img}
+                              alt={`Gallery image ${index + 10}`}
+                              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            <div className="absolute bottom-2 left-2 right-2 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                              <div className="bg-white/20 backdrop-blur-sm rounded-lg p-2">
+                                <p className="text-xs font-cinzel font-semibold">Product Gallery</p>
+                              </div>
+                            </div>
+                          </div>
+                        </motion.div>
+                      ))}
+                      <div></div> {/* Empty space for centering */}
+                    </div>
+                  </div>
+
+                  {/* View More Button */}
+                  <motion.button
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-full mt-6 py-4 px-6 bg-gradient-to-r from-pink-600 to-pink-800 text-white font-cinzel font-semibold rounded-xl hover:from-pink-700 hover:to-pink-900 transition-all duration-300 shadow-lg hover:shadow-xl"
+                  >
+                    View Full Gallery
+                  </motion.button>
+                </div>
+              </div>
+            </motion.div>
+           
           </div>
         </motion.div>
 
@@ -681,12 +1093,12 @@ const Contact = () => {
                     <span className="font-cinzel">+91 6392574854</span>
                 </a>
                 <a 
-                  href="mailto:info@sweetbliss.com"
+                  href="mailto:info@krishnakanha.com"
                     className="flex items-center space-x-3 bg-white/20 backdrop-blur-sm p-3 rounded-xl hover:bg-white/30 transition-all duration-300 group"
-                    aria-label="Email us at info@sweetbliss.com"
+                    aria-label="Email us at info@krishnakanha.com"
                 >
                     <Mail className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
-                    <span className="font-cinzel">info@sweetbliss.com</span>
+                    <span className="font-cinzel">info@krishnakanha.com</span>
                 </a>
                 </div>
               </div>
@@ -711,6 +1123,92 @@ const Contact = () => {
           </motion.div>
         </div>
       </div>
+
+      {/* PDF Preview Modal */}
+      {previewPdf && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          onClick={() => setPreviewPdf(null)}
+        >
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100">
+              <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+                  <FileText className="h-5 w-5 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-cinzel font-bold text-gray-900">PDF Preview</h3>
+                  <p className="text-sm text-gray-600 font-cinzel">
+                    {previewPdf.includes('certificateOfIEC') ? 'IEC Certificate' :
+                     previewPdf.includes('sale rate list') ? 'Sale Rate List' :
+                     previewPdf.includes('RAHUL TRADERS') ? 'Rahul Traders Document' : 'Document'}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center space-x-2">
+                <motion.a
+                  href={previewPdf}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300"
+                  title="Download PDF"
+                >
+                  <Download className="h-5 w-5" />
+                </motion.a>
+                <motion.button
+                  onClick={() => setPreviewPdf(null)}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="p-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors duration-300"
+                  title="Close Preview"
+                >
+                  <X className="h-5 w-5" />
+                </motion.button>
+              </div>
+            </div>
+
+            {/* PDF Viewer */}
+            <div className="h-[70vh] bg-gray-100">
+              <iframe
+                src={`${previewPdf}#toolbar=1&navpanes=1&scrollbar=1`}
+                width="100%"
+                height="100%"
+                className="border-0"
+                title="PDF Preview"
+              />
+            </div>
+
+            {/* Modal Footer */}
+            <div className="p-4 bg-gradient-to-r from-gray-50 to-gray-100 border-t border-gray-200">
+              <div className="flex items-center justify-between">
+                <p className="text-sm text-gray-600 font-cinzel">
+                  Use the controls above to navigate, zoom, or download the PDF
+                </p>
+                <motion.button
+                  onClick={() => setPreviewPdf(null)}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-6 py-2 bg-gray-800 text-white font-cinzel font-semibold rounded-lg hover:bg-gray-900 transition-colors duration-300"
+                >
+                  Close
+                </motion.button>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
     </div>
   );
 };

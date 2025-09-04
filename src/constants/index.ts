@@ -5,7 +5,7 @@ export const APP_CONFIG = {
   version: '1.0.0',
   contact: {
     phone: '+91 6392574854',
-    email: 'info@sweetbliss.com',
+    email: 'krishnakanhasalesenterprises@gmail.com',
     address: '123 Sweet Street, Andheri West, Mumbai, Maharashtra 400058, India'
   },
   social: {

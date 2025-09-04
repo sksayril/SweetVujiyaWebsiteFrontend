@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -6,13 +5,27 @@ import { Link } from 'react-router-dom';
 const Hero = () => {
   return (
     <section className="relative h-screen overflow-hidden">
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 h-full w-full bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/img9.jpeg')`
-        }}
-      />
+      {/* Background Video */}
+      <div className="absolute inset-0 h-full w-full">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 h-full w-full object-cover"
+        >
+          <source src="/WhatsApp Video 2025-09-04 at 1.31.06 PM.mp4" type="video/mp4" />
+          {/* Fallback image if video doesn't load */}
+          <div 
+            className="absolute inset-0 h-full w-full bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/img9.jpeg')`
+            }}
+          />
+        </video>
+        {/* Dark overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/50"></div>
+      </div>
 
       <div className="relative z-10 flex items-center justify-center h-full">
         <div className="text-center text-white px-4 sm:px-6 lg:px-8">

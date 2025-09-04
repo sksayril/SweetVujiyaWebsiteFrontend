@@ -95,7 +95,7 @@ Create a `.env` file in the root directory:
 ```env
 VITE_APP_NAME="Krishna & Kanha Sales Enterprises"
 VITE_APP_URL="https://krishnakanha.com"
-VITE_CONTACT_EMAIL="info@sweetbliss.com"
+VITE_CONTACT_EMAIL="krishnakanhasalesenterprises@gmail.com"
 VITE_CONTACT_PHONE="+91 6392574854"
 ```
 
@@ -209,7 +209,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Contact
 
 - **Website**: [krishnakanha.com](https://krishnakanha.com)
-- **Email**: info@sweetbliss.com
+- **Email**: krishnakanhasalesenterprises@gmail.com
 - **Phone**: +91 6392574854
 - **Address**: 123 Sweet Street, Andheri West, Mumbai, Maharashtra 400058, India
 

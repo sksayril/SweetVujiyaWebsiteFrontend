@@ -51,7 +51,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="h-4 w-4 text-amber-300" />
-                <span className="text-sm">info@sweetbliss.com</span>
+                <span className="text-sm">krishnakanhasalesenterprises@gmail.com</span>
               </div>
             </div>
           </motion.div>
@@ -67,8 +67,7 @@ const Footer = () => {
               <p className="text-sm hover:text-white cursor-pointer transition-colors">Privacy Policy</p>
               <p className="text-sm hover:text-white cursor-pointer transition-colors">Terms of Service</p>
               <p className="text-sm hover:text-white cursor-pointer transition-colors">Shipping Info</p>
-              <p className="text-sm hover:text-white cursor-pointer transition-colors">Returns</p>
-            </div>
+             </div>
           </motion.div>
         </div>
 
