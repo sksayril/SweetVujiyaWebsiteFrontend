@@ -78,7 +78,7 @@ const FeaturedProducts = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-gray-100/20 via-transparent to-gray-200/20" />
       <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-gray-200/30 to-gray-300/30 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-gray-300/30 to-gray-200/30 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
-      
+
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -96,7 +96,7 @@ const FeaturedProducts = () => {
               ✨ Premium Collection
             </span>
           </motion.div>
-          
+
           <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
             Featured{' '}
             <span className="relative inline-block">
@@ -111,7 +111,7 @@ const FeaturedProducts = () => {
               />
             </span>
           </h2>
-          
+
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -160,17 +160,17 @@ const FeaturedProducts = () => {
               >
                 {/* Premium glow effect */}
                 <div className="absolute inset-0 bg-gradient-to-br from-gray-100/50 via-transparent to-gray-200/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl" />
-                
+
                 <div className="relative overflow-hidden rounded-t-3xl">
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent z-10" />
-                  
+
                   <motion.img
                     src={product.image}
                     alt={product.name}
                     className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-700"
                     whileHover={{ scale: 1.1 }}
                   />
-                  
+
                   {/* Premium heart button */}
                   <motion.button
                     onClick={() => toggleLike(product.id)}
@@ -182,13 +182,13 @@ const FeaturedProducts = () => {
                       animate={{ scale: likedProducts[product.id] ? 1.2 : 1 }}
                       transition={{ type: 'spring', stiffness: 400, damping: 10 }}
                     >
-                      <Heart 
+                      <Heart
                         className={`w-6 h-6 transition-colors duration-300 ${likedProducts[product.id] ? 'text-red-500' : 'text-white'}`}
                         fill={likedProducts[product.id] ? 'currentColor' : 'none'}
                       />
                     </motion.div>
                   </motion.button>
-                  
+
                   {/* Enhanced category badge */}
                   <motion.div
                     className="absolute bottom-4 left-4 bg-gradient-to-r from-gray-700 via-gray-800 to-black text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg backdrop-blur-sm border border-white/20"
@@ -198,11 +198,11 @@ const FeaturedProducts = () => {
                   >
                     {product.category}
                   </motion.div>
-                  
+
                   {/* Premium shine effect */}
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
                 </div>
-                
+
                 <div className="relative p-8">
                   <div className="flex items-start justify-between mb-4">
                     <motion.h3
@@ -213,7 +213,7 @@ const FeaturedProducts = () => {
                     >
                       {product.name}
                     </motion.h3>
-                    
+
                     <motion.div
                       className="flex items-center space-x-1 bg-gradient-to-r from-gray-50 to-gray-100 px-3 py-1 rounded-full border border-gray-200/50"
                       initial={{ opacity: 0, scale: 0.8 }}
@@ -224,7 +224,7 @@ const FeaturedProducts = () => {
                       <span className="text-sm font-semibold text-gray-700">{product.rating}</span>
                     </motion.div>
                   </div>
-                  
+
                   <motion.p
                     className="text-gray-600 mb-6 text-base leading-relaxed"
                     initial={{ opacity: 0, y: 10 }}
@@ -233,7 +233,7 @@ const FeaturedProducts = () => {
                   >
                     {product.description}
                   </motion.p>
-                  
+
                   <div className="flex items-center justify-between">
                     <motion.span
                       className="text-3xl font-bold bg-gradient-to-r from-gray-700 via-gray-800 to-black bg-clip-text text-transparent"
@@ -243,7 +243,7 @@ const FeaturedProducts = () => {
                     >
                       {product.price}
                     </motion.span>
-                    
+
                     <motion.button
                       className="relative bg-gradient-to-r from-gray-700 via-gray-800 to-black hover:from-gray-800 hover:via-black hover:to-black text-white px-8 py-3 rounded-full text-sm font-bold transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl overflow-hidden group"
                       initial={{ opacity: 0, x: 10 }}
@@ -279,7 +279,7 @@ const FeaturedProducts = () => {
             >
               {/* Premium button background effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-transparent to-white/20 -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
-              
+
               <span className="relative z-10">View All Products</span>
               <motion.div
                 className="relative z-10"
@@ -288,12 +288,12 @@ const FeaturedProducts = () => {
               >
                 <ArrowRight className="h-6 w-6 group-hover:translate-x-2 transition-transform duration-300" />
               </motion.div>
-              
+
               {/* Glow effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-gray-600/50 to-black/50 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
             </Link>
           </motion.div>
-          
+
           {/* Decorative elements */}
           <motion.div
             className="flex justify-center items-center space-x-2 mt-8 text-gray-400"
