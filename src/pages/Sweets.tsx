@@ -1,11 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Heart, Star, ShoppingCart, Filter } from 'lucide-react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination, EffectCoverflow } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/effect-coverflow';
+import { Heart, Star, Filter } from 'lucide-react';
+// Swiper imports removed (unused)
 
 const Sweets = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -274,11 +270,7 @@ const Sweets = () => {
                     onClick={() => toggleLike(sweet.id)}
                   />
                 </div>
-                {sweet.originalPrice && (
-                  <div className="absolute bottom-4 right-4 bg-gray-800 text-white px-2 py-1 rounded-full text-xs font-cinzel font-semibold">
-                    SAVE ₹{parseInt(sweet.originalPrice.slice(1)) - parseInt(sweet.price.slice(1))}
-                  </div>
-                )}
+                {/* Price badge removed */}
               </div>
               
               <div className="p-6">
@@ -304,20 +296,9 @@ const Sweets = () => {
                   </p>
                 </div>
                 
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-2">
-                    <span className="text-2xl font-cinzel font-bold bg-gradient-to-r from-gray-800 to-black bg-clip-text text-transparent">
-                      {sweet.price}
-                    </span>
-                    {sweet.originalPrice && (
-                      <span className="text-sm text-gray-400 line-through font-cinzel">
-                        {sweet.originalPrice}
-                      </span>
-                    )}
-                  </div>
-                  <button className="bg-gradient-to-r from-gray-800 to-black hover:from-gray-900 hover:to-black text-white px-4 py-2 rounded-full text-sm font-cinzel font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2">
-                    <ShoppingCart className="h-4 w-4" />
-                    <span>Add to Cart</span>
+                <div className="flex items-center justify-center">
+                  <button className="bg-gradient-to-r from-gray-800 to-black hover:from-gray-900 hover:to-black text-white px-6 py-3 rounded-full text-sm font-cinzel font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                    Contact for Price
                   </button>
                 </div>
               </div>

@@ -1,6 +1,5 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { Heart, Star, ShoppingCart, Flame } from 'lucide-react';
+import { Heart, Star, Flame } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, EffectCoverflow } from 'swiper/modules';
 import 'swiper/css';
@@ -18,8 +17,6 @@ interface NamkeenItem {
   name: string;
   category: string;
   image: string;
-  price: string;
-  originalPrice: string;
   rating: number;
   reviews: number;
   description: string;
@@ -42,8 +39,6 @@ const Namkeen = () => {
       name: 'Premium Mixture',
       category: 'Spicy Mix',
       image: 'https://i.pinimg.com/736x/8a/eb/a3/8aeba37ada5a0eaefaca02b3ad32cdfd.jpg',
-      price: '₹180',
-      originalPrice: '₹200',
       rating: 4.6,
       reviews: 73,
       description: 'Crunchy mix of lentils, nuts and aromatic spices',
@@ -57,8 +52,6 @@ const Namkeen = () => {
       name: 'Aloo Bhujia',
       category: 'Classic',
       image: 'https://i.pinimg.com/736x/07/3e/2c/073e2c06b404905710c315f3f5b7df02.jpg',
-      price: '₹150',
-      originalPrice: '₹170',
       rating: 4.7,
       reviews: 89,
       description: 'Thin potato sticks seasoned with traditional spices',
@@ -72,8 +65,6 @@ const Namkeen = () => {
       name: 'Samosa',
       category: 'Fried Snacks',
       image: 'https://i.pinimg.com/736x/92/f5/86/92f586ad41e93f164a4c38a990dc1b83.jpg',
-      price: '₹200',
-      originalPrice: '₹220',
       rating: 4.8,
       reviews: 124,
       description: 'Golden triangular pastries with spiced potato filling',
@@ -87,8 +78,6 @@ const Namkeen = () => {
       name: 'Khakhra',
       category: 'Healthy Snacks',
       image: 'https://i.pinimg.com/1200x/5e/48/d2/5e48d20bc1fba6ba8da5805270322551.jpg',
-      price: '₹120',
-      originalPrice: '₹140',
       rating: 4.5,
       reviews: 56,
       description: 'Crispy wheat flatbread seasoned with aromatic spices',
@@ -102,8 +91,6 @@ const Namkeen = () => {
       name: 'Papdi Chaat Mix',
       category: 'Chaat Special',
       image: 'https://i.pinimg.com/736x/91/67/02/91670220b08b0ab742c664df4a660176.jpg',
-      price: '₹250',
-      originalPrice: '₹280',
       rating: 4.9,
       reviews: 98,
       description: 'Complete chaat mix with crispy papdis and tangy sauces',
@@ -117,8 +104,6 @@ const Namkeen = () => {
       name: 'Mathri',
       category: 'Traditional',
       image: 'https://i.pinimg.com/1200x/81/e9/77/81e97751ca4bbc89bc5e2a2852d542ca.jpg',
-      price: '₹160',
-      originalPrice: '₹180',
       rating: 4.4,
       reviews: 67,
       description: 'Flaky, savory crackers perfect with tea',
@@ -223,7 +208,7 @@ const Namkeen = () => {
             }}
             className="pb-12"
           >
-            {namkeenItems.slice(0, 4).map((item, index) => (
+            {namkeenItems.slice(0, 4).map((item) => (
               <SwiperSlide key={item.id} className="!w-80">
                 <div className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 group">
                   <div className="relative overflow-hidden">
@@ -245,13 +230,11 @@ const Namkeen = () => {
                   <div className="p-4">
                     <h3 className="text-lg font-bold text-gray-900 mb-2">{item.name}</h3>
                     <p className="text-gray-600 text-sm mb-3">{item.description}</p>
-                    <div className="flex items-center justify-between">
-                      <span className="text-xl font-bold bg-gradient-to-r from-gray-800 to-black bg-clip-text text-transparent">
-                        {item.price}
-                      </span>
+                    <div className="flex items-center justify-center">
                       <div className="flex items-center space-x-1">
                         <Star className="h-4 w-4 text-gray-400 fill-current" />
                         <span className="text-sm text-gray-600">{item.rating}</span>
+                        <span className="text-xs text-gray-400">({item.reviews} reviews)</span>
                       </div>
                     </div>
                   </div>
@@ -287,11 +270,6 @@ const Namkeen = () => {
                   <Flame className="h-4 w-4" />
                   <span>{item.spiceLevel}</span>
                 </div>
-                {item.originalPrice && (
-                  <div className="absolute bottom-4 right-4 bg-gray-800 text-white px-2 py-1 rounded-full text-xs font-semibold">
-                    SAVE ₹{parseInt(item.originalPrice.slice(1)) - parseInt(item.price.slice(1))}
-                  </div>
-                )}
               </div>
               
               <div className="p-6">
@@ -320,20 +298,9 @@ const Namkeen = () => {
                   </p>
                 </div>
                 
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-2">
-                    <span className="text-2xl font-bold bg-gradient-to-r from-gray-800 to-black bg-clip-text text-transparent">
-                      {item.price}
-                    </span>
-                    {item.originalPrice && (
-                      <span className="text-sm text-gray-400 line-through">
-                        {item.originalPrice}
-                      </span>
-                    )}
-                  </div>
-                  <button className="bg-gradient-to-r from-gray-800 to-black hover:from-gray-900 hover:to-black text-white px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2">
-                    <ShoppingCart className="h-4 w-4" />
-                    <span>Add to Cart</span>
+                <div className="flex items-center justify-center">
+                  <button className="bg-gradient-to-r from-gray-800 to-black hover:from-gray-900 hover:to-black text-white px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2">
+                    <span>Contact for Price</span>
                   </button>
                 </div>
               </div>
@@ -350,7 +317,7 @@ const Namkeen = () => {
         >
           <h2 className="text-3xl font-bold mb-4">Bulk Orders & Party Packs! 🎉</h2>
           <p className="text-xl mb-6 opacity-90">
-            Planning a party or event? Get special discounts on bulk orders above ₹2000
+            Planning a party or event? Contact us for special bulk order rates and party packages
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button className="bg-white text-gray-800 px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-100 transition-colors duration-300 transform hover:scale-105">

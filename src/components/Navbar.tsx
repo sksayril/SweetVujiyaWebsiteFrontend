@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Menu, X, Heart } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,6 +12,7 @@ const Navbar = () => {
     { path: '/products', label: 'Products' },
     { path: '/sweets', label: 'Sweets' },
     { path: '/namkeen', label: 'Namkeen' },
+    { path: '/how-to-make', label: 'How To Make' },
     { path: '/distributors', label: 'Distributors' },
     { path: '/about', label: 'About' },
     { path: '/contact', label: 'Contact' },

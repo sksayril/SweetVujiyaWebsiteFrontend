@@ -181,6 +181,90 @@ const About = () => {
           </div>
         </motion.div>
 
+        {/* Founder Gallery Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="mb-16"
+        >
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-cinzel font-bold text-gray-900 mb-4">
+              Meet Our <span className="bg-gradient-to-r from-gray-800 to-black bg-clip-text text-transparent">Founders</span>
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto font-cinzel">
+              Get to know the passionate individuals behind Krishna & Kanha Sales Enterprises
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                id: 1,
+                image: 'https://res.cloudinary.com/dijpqfthq/image/upload/v1758877970/WhatsApp_Image_2025-09-26_at_13.35.16_ogvnvz.jpg',
+                name: 'Krishna',
+                title: 'Co-Founder & Director',
+                description: 'Visionary leader with 25+ years of experience in traditional sweet making'
+              },
+              {
+                id: 2,
+                image: 'https://res.cloudinary.com/dijpqfthq/image/upload/v1758882393/WhatsApp_Image_2025-09-26_at_13.36.24_fx4tmn.jpg',
+                name: 'Kanha',
+                title: 'Co-Founder & CEO',
+                description: 'Master craftsman specializing in premium sweets and quality control'
+              },
+              {
+                id: 3,
+                image: 'https://res.cloudinary.com/dijpqfthq/image/upload/v1758882435/WhatsApp_Image_2025-09-26_at_13.37.06_fmrhge.jpg',
+                name: 'Family Legacy',
+                title: 'Traditional Values',
+                description: 'Preserving authentic recipes passed down through generations'
+              },
+              {
+                id: 4,
+                image: 'https://res.cloudinary.com/dijpqfthq/image/upload/v1758882467/WhatsApp_Image_2025-09-26_at_13.37.06_1_pqbjcq.jpg',
+                name: 'Quality Team',
+                title: 'Production Excellence',
+                description: 'Dedicated team ensuring every product meets our high standards'
+              },
+              {
+                id: 5,
+                image: 'https://res.cloudinary.com/dijpqfthq/image/upload/v1758882497/WhatsApp_Image_2025-09-26_at_13.37.07_zub39e.jpg',
+                name: 'Innovation',
+                title: 'Modern Techniques',
+                description: 'Combining traditional methods with modern quality assurance'
+              }
+            ].map((founder, index) => (
+              <motion.div
+                key={founder.id}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 group"
+              >
+                <div className="relative overflow-hidden bg-gray-100">
+                  <img
+                    src={founder.image}
+                    alt={founder.name}
+                    className="w-full h-64 object-contain group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p className="text-sm font-cinzel">{founder.description}</p>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-cinzel font-bold text-gray-900 mb-2">{founder.name}</h3>
+                  <p className="text-gray-600 font-cinzel font-semibold mb-3">{founder.title}</p>
+                  <div className="flex items-center justify-center">
+                    <div className="w-8 h-0.5 bg-gradient-to-r from-gray-800 to-black rounded-full"></div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
         {/* Values Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
