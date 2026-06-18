@@ -1,5 +1,7 @@
+'use client';
+
 import React from 'react';
-import { Heart, MapPin, Phone, Mail, Facebook, Instagram, Twitter } from 'lucide-react';
+import { MapPin, Phone, Mail, Facebook, Instagram, Twitter } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Footer = () => {

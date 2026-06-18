@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Star, Quote, Play, Pause, Volume2, VolumeX } from 'lucide-react';

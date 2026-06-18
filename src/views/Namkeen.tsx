@@ -1,0 +1,255 @@
+'use client';
+
+import { motion } from 'framer-motion';
+import { Heart, Star, Flame, Loader2 } from 'lucide-react';
+import { useProducts, mapProductForDisplay } from '@/hooks/useProducts';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination, EffectCoverflow } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-coverflow';
+
+interface SpiceLevel {
+  level: string;
+  color: string;
+  bgColor: string;
+}
+
+const Namkeen = () => {
+  const spiceLevels: SpiceLevel[] = [
+    { level: 'Mild', color: 'text-green-500', bgColor: 'bg-green-100' },
+    { level: 'Medium', color: 'text-yellow-500', bgColor: 'bg-yellow-100' },
+    { level: 'Hot', color: 'text-red-500', bgColor: 'bg-red-100' }
+  ];
+
+  const { products: apiProducts, loading } = useProducts('namkeen');
+  const namkeenItems = apiProducts.map(mapProductForDisplay);
+
+  const getSpiceLevelInfo = (level?: string): SpiceLevel => {
+    return spiceLevels.find(s => s.level === level) || spiceLevels[0];
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Loader2 className="h-10 w-10 animate-spin text-orange-600" />
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
+        >
+          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
+            Crispy <span className="bg-gradient-to-r from-gray-800 to-black bg-clip-text text-transparent">Namkeen</span>
+          </h1>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Savor the authentic taste of India's favorite savory snacks, 
+            made fresh daily with traditional recipes and premium spices that pack a flavorful punch
+          </p>
+        </motion.div>
+
+        {/* Spice Level Guide */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="bg-gradient-to-r from-gray-100 to-gray-200 rounded-2xl p-6 mb-12"
+        >
+          <h2 className="text-2xl font-bold text-gray-900 mb-4 text-center flex items-center justify-center space-x-2">
+            <Flame className="h-6 w-6 text-gray-700" />
+            <span>Spice Level Guide</span>
+            <Flame className="h-6 w-6 text-gray-800" />
+          </h2>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            {spiceLevels.map((spice, index) => (
+              <div key={index} className="flex items-center space-x-2">
+                <div className={`w-4 h-4 rounded-full ${spice.bgColor}`}></div>
+                <span className={`font-semibold ${spice.color}`}>{spice.level}</span>
+                <div className="flex space-x-1">
+                  {[...Array(index + 1)].map((_, i) => (
+                    <Flame key={i} className={`h-4 w-4 ${spice.color}`} />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Featured Namkeen Slider */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mb-16"
+        >
+          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+            Trending Namkeen
+          </h2>
+          <Swiper
+            modules={[Autoplay, Pagination, EffectCoverflow]}
+            effect="coverflow"
+            grabCursor={true}
+            centeredSlides={true}
+            slidesPerView="auto"
+            coverflowEffect={{
+              rotate: 50,
+              stretch: 0,
+              depth: 100,
+              modifier: 1,
+              slideShadows: true,
+            }}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+            }}
+            pagination={{
+              clickable: true,
+              dynamicBullets: true,
+            }}
+            breakpoints={{
+              640: {
+                slidesPerView: 1,
+              },
+              768: {
+                slidesPerView: 2,
+              },
+              1024: {
+                slidesPerView: 3,
+              },
+            }}
+            className="pb-12"
+          >
+            {namkeenItems.slice(0, 4).map((item) => (
+              <SwiperSlide key={item.id} className="!w-80">
+                <div className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 group">
+                  <div className="relative overflow-hidden">
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute top-4 left-4 bg-gradient-to-r from-gray-800 to-black text-white px-3 py-1 rounded-full text-sm font-semibold">
+                      {item.category}
+                    </div>
+                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm p-2 rounded-full">
+                      <div className={`flex items-center space-x-1 ${getSpiceLevelInfo(item.spiceLevel).color}`}>
+                        <Flame className="h-4 w-4" />
+                        <span className="text-xs font-semibold">{item.spiceLevel}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="p-4">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">{item.name}</h3>
+                    <p className="text-gray-600 text-sm mb-3">{item.description}</p>
+                    <div className="flex items-center justify-center">
+                      <div className="flex items-center space-x-1">
+                        <Star className="h-4 w-4 text-gray-400 fill-current" />
+                        <span className="text-sm text-gray-600">{item.rating}</span>
+                        <span className="text-xs text-gray-400">({item.reviews} reviews)</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </motion.div>
+
+        {/* Complete Namkeen Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          {namkeenItems.map((item, index) => (
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 group"
+            >
+              <div className="relative overflow-hidden">
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute top-4 left-4 bg-gradient-to-r from-gray-800 to-black text-white px-3 py-1 rounded-full text-sm font-semibold">
+                  {item.category}
+                </div>
+                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm p-2 rounded-full">
+                  <Heart className="h-5 w-5 text-gray-400 hover:text-gray-600 transition-colors cursor-pointer" />
+                </div>
+                <div className={`absolute bottom-4 left-4 px-3 py-1 rounded-full text-sm font-semibold flex items-center space-x-1 ${getSpiceLevelInfo(item.spiceLevel).bgColor} ${getSpiceLevelInfo(item.spiceLevel).color}`}>
+                  <Flame className="h-4 w-4" />
+                  <span>{item.spiceLevel}</span>
+                </div>
+              </div>
+              
+              <div className="p-6">
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-xl font-bold text-gray-900">{item.name}</h3>
+                  <div className="flex items-center space-x-1">
+                    <Star className="h-4 w-4 text-gray-400 fill-current" />
+                    <span className="text-sm text-gray-600">{item.rating}</span>
+                    <span className="text-xs text-gray-400">({item.reviews})</span>
+                  </div>
+                </div>
+                
+                <p className="text-gray-600 mb-3 text-sm leading-relaxed">
+                  {item.description}
+                </p>
+                
+                <div className="mb-4 space-y-1">
+                  <p className="text-xs text-gray-500">
+                    <strong>Ingredients:</strong> {item.ingredients}
+                  </p>
+                  <p className="text-xs text-gray-500">
+                    <strong>Weight:</strong> {item.weight}
+                  </p>
+                  <p className="text-xs text-gray-500">
+                    <strong>Shelf Life:</strong> {item.shelfLife}
+                  </p>
+                </div>
+                
+                <div className="flex items-center justify-center">
+                  <button className="bg-gradient-to-r from-gray-800 to-black hover:from-gray-900 hover:to-black text-white px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2">
+                    <span>Contact for Price</span>
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Bulk Order Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="bg-gradient-to-r from-gray-800 to-black rounded-2xl p-8 text-white text-center"
+        >
+          <h2 className="text-3xl font-bold mb-4">Bulk Orders & Party Packs! 🎉</h2>
+          <p className="text-xl mb-6 opacity-90">
+            Planning a party or event? Contact us for special bulk order rates and party packages
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button className="bg-white text-gray-800 px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-100 transition-colors duration-300 transform hover:scale-105">
+              Contact for Bulk Orders
+            </button>
+            <button className="border-2 border-white text-white hover:bg-white hover:text-gray-800 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105">
+              View Party Combos
+            </button>
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  );
+};
+
+export default Namkeen;

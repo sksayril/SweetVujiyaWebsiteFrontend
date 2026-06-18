@@ -1,14 +1,15 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/views/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
       fontFamily: {
-        'cinzel': ['"Cinzel Decorative"', 'serif'],
-        'cinzel-decorative': ['"Cinzel Decorative"', 'serif'],
+        cinzel: ['var(--font-cinzel)', 'serif'],
+        'cinzel-decorative': ['var(--font-cinzel)', 'serif'],
       },
       colors: {
         primary: {
@@ -34,7 +35,7 @@ export default {
           700: '#a16207',
           800: '#854d0e',
           900: '#713f12',
-        }
+        },
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
@@ -54,4 +55,4 @@ export default {
     },
   },
   plugins: [],
-}
+};

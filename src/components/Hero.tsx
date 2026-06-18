@@ -1,6 +1,8 @@
+'use client';
+
 import { motion } from 'framer-motion';
 import { ArrowRight, Star } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const Hero = () => {
   return (
@@ -92,7 +94,7 @@ const Hero = () => {
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Link
-              to="/products"
+              href="/products"
               className="group bg-gradient-to-r from-gray-800 to-black hover:from-gray-900 hover:to-black text-white px-8 py-4 rounded-full text-lg font-cinzel font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2"
             >
               <span>Explore Products</span>
@@ -100,7 +102,7 @@ const Hero = () => {
             </Link>
             
             <Link
-              to="/about"
+              href="/about"
               className="border-2 border-white text-white hover:bg-white hover:text-gray-800 px-8 py-4 rounded-full text-lg font-cinzel font-semibold transition-all duration-300 transform hover:scale-105"
             >
               Our Story

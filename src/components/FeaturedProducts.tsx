@@ -1,76 +1,34 @@
+'use client';
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { ArrowRight, Heart, Star } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, EffectCoverflow } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import 'swiper/css/effect-coverflow';
+import { useProducts, mapProductForDisplay } from '@/hooks/useProducts';
+import { Loader2 } from 'lucide-react';
 
 const FeaturedProducts = () => {
   const [likedProducts, setLikedProducts] = useState<Record<number, boolean>>({});
+  const { products: apiProducts, loading } = useProducts(undefined, true);
+  const products = apiProducts.map(mapProductForDisplay);
 
   const toggleLike = (productId: number) => {
     setLikedProducts(prev => ({ ...prev, [productId]: !prev[productId] }));
   };
-  const products = [
-    {
-      id: 1,
-      name: 'Besan Laddu',
-      category: 'Traditional Sweets',
-      image: '/img2.jpeg',
-      price: '₹400',
-      rating: 4.9,
-      description: 'Traditional gram flour laddus with ghee and nuts'
-    },
-    {
-      id: 2,
-      name: 'Coconut Laddu',
-      category: 'Premium Sweets',
-      image: '/img3.jpeg',
-      price: '₹350',
-      rating: 4.8,
-      description: 'Fresh coconut laddus with cardamom flavor'
-    },
-    {
-      id: 3,
-      name: 'Motichoor Laddu',
-      category: 'Festival Sweets',
-      image: '/img4.jpeg',
-      price: '₹450',
-      rating: 4.7,
-      description: 'Fine boondi laddus with rich ghee and dry fruits'
-    },
-    {
-      id: 4,
-      name: 'Rava Laddu',
-      category: 'Classic Sweets',
-      image: '/img5.jpeg',
-      price: '₹300',
-      rating: 4.9,
-      description: 'Semolina laddus with cashews and raisins'
-    },
-    {
-      id: 5,
-      name: 'Til Laddu',
-      category: 'Winter Special',
-      image: '/img2.jpeg',
-      price: '₹320',
-      rating: 4.6,
-      description: 'Sesame seed laddus with jaggery and ghee'
-    },
-    {
-      id: 6,
-      name: 'Dry Fruit Laddu',
-      category: 'Premium Sweets',
-      image: '/img3.jpeg',
-      price: '₹600',
-      rating: 4.8,
-      description: 'Rich laddus loaded with almonds, cashews and pistachios'
-    }
-  ];
+
+  if (loading) {
+    return (
+      <section className="py-20 flex justify-center">
+        <Loader2 className="h-10 w-10 animate-spin text-orange-600" />
+      </section>
+    );
+  }
+
+  if (products.length === 0) return null;
 
   return (
     <section className="relative py-20 bg-gradient-to-br from-gray-50 via-white to-gray-100 overflow-hidden">
@@ -274,7 +232,7 @@ const FeaturedProducts = () => {
             className="inline-block"
           >
             <Link
-              to="/products"
+              href="/products"
               className="group relative inline-flex items-center space-x-3 bg-gradient-to-r from-gray-700 via-gray-800 to-black hover:from-gray-800 hover:via-black hover:to-black text-white px-12 py-5 rounded-full text-lg font-bold transition-all duration-500 transform hover:scale-105 shadow-2xl hover:shadow-3xl overflow-hidden"
             >
               {/* Premium button background effect */}
