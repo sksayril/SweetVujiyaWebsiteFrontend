@@ -4,10 +4,22 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Heart, Star, Filter, Loader2 } from 'lucide-react';
 import { useProducts, mapProductForDisplay } from '@/hooks/useProducts';
+import ContactForPriceModal from '@/components/ContactForPriceModal';
 
 const Sweets = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [likedProducts, setLikedProducts] = useState<Record<number, boolean>>({});
+  const [inquiryModalOpen, setInquiryModalOpen] = useState(false);
+  const [selectedProductForInquiry, setSelectedProductForInquiry] = useState<{
+    name: string;
+    image?: string;
+    category?: string;
+  } | null>(null);
+
+  const handleOpenInquiry = (product: { name: string; image?: string; category?: string }) => {
+    setSelectedProductForInquiry(product);
+    setInquiryModalOpen(true);
+  };
 
   const toggleLike = (productId: number) => {
     setLikedProducts(prev => ({ ...prev, [productId]: !prev[productId] }));
@@ -163,7 +175,16 @@ const Sweets = () => {
                 </div>
                 
                 <div className="flex items-center justify-center">
-                  <button className="bg-gradient-to-r from-gray-800 to-black hover:from-gray-900 hover:to-black text-white px-6 py-3 rounded-full text-sm font-cinzel font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                  <button
+                    onClick={() =>
+                      handleOpenInquiry({
+                        name: sweet.name,
+                        image: sweet.image,
+                        category: sweet.category,
+                      })
+                    }
+                    className="bg-gradient-to-r from-gray-800 to-black hover:from-gray-900 hover:to-black text-white px-6 py-3 rounded-full text-sm font-cinzel font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                  >
                     Contact for Price
                   </button>
                 </div>
@@ -183,11 +204,26 @@ const Sweets = () => {
           <p className="text-xl mb-6 opacity-90 font-cinzel">
             Buy any 3 sweets and get 15% off + Free Home Delivery
           </p>
-          <button className="bg-white text-gray-800 px-8 py-4 rounded-full text-lg font-cinzel font-semibold hover:bg-gray-100 transition-colors duration-300 transform hover:scale-105">
-            Shop Now & Save
+          <button
+            onClick={() =>
+              handleOpenInquiry({
+                name: 'Sweet Deal Alert (15% Off Offer)',
+                category: 'Festival Special Offer',
+              })
+            }
+            className="bg-white text-gray-800 px-8 py-4 rounded-full text-lg font-cinzel font-semibold hover:bg-gray-100 transition-colors duration-300 transform hover:scale-105"
+          >
+            Inquire Now & Save
           </button>
         </motion.div>
       </div>
+
+      {/* Inquiry / Contact for Price Modal */}
+      <ContactForPriceModal
+        isOpen={inquiryModalOpen}
+        onClose={() => setInquiryModalOpen(false)}
+        product={selectedProductForInquiry}
+      />
     </div>
   );
 };

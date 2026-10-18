@@ -10,9 +10,22 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { useProducts, mapProductForDisplay } from '@/hooks/useProducts';
 import { Loader2 } from 'lucide-react';
+import ContactForPriceModal from '@/components/ContactForPriceModal';
 
 const FeaturedProducts = () => {
   const [likedProducts, setLikedProducts] = useState<Record<number, boolean>>({});
+  const [inquiryModalOpen, setInquiryModalOpen] = useState(false);
+  const [selectedProductForInquiry, setSelectedProductForInquiry] = useState<{
+    name: string;
+    image?: string;
+    category?: string;
+  } | null>(null);
+
+  const handleOpenInquiry = (product: { name: string; image?: string; category?: string }) => {
+    setSelectedProductForInquiry(product);
+    setInquiryModalOpen(true);
+  };
+
   const { products: apiProducts, loading } = useProducts(undefined, true);
   const products = apiProducts.map(mapProductForDisplay);
 
@@ -203,6 +216,13 @@ const FeaturedProducts = () => {
                     </motion.span>
 
                     <motion.button
+                      onClick={() =>
+                        handleOpenInquiry({
+                          name: product.name,
+                          image: product.image,
+                          category: product.category,
+                        })
+                      }
                       className="relative bg-gradient-to-r from-gray-700 via-gray-800 to-black hover:from-gray-800 hover:via-black hover:to-black text-white px-8 py-3 rounded-full text-sm font-bold transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl overflow-hidden group"
                       initial={{ opacity: 0, x: 10 }}
                       whileInView={{ opacity: 1, x: 0 }}
@@ -210,7 +230,7 @@ const FeaturedProducts = () => {
                       whileHover={{ y: -2 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      <span className="relative z-10">Add to Cart</span>
+                      <span className="relative z-10">Enquire Now</span>
                       <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </motion.button>
                   </div>
@@ -265,6 +285,13 @@ const FeaturedProducts = () => {
           </motion.div>
         </motion.div>
       </div>
+
+      {/* Inquiry / Contact for Price Modal */}
+      <ContactForPriceModal
+        isOpen={inquiryModalOpen}
+        onClose={() => setInquiryModalOpen(false)}
+        product={selectedProductForInquiry}
+      />
     </section>
   );
 };

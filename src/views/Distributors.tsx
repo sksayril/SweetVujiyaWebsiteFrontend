@@ -240,10 +240,16 @@ const Distributors = () => {
     setEmployeeSubmitStatus('idle');
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      const res = await fetch('/api/applications', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(employeeFormData),
+      });
+
+      if (!res.ok) {
+        throw new Error('Failed to submit application');
+      }
       
-      console.log('Employee application submitted:', employeeFormData);
       setEmployeeSubmitStatus('success');
       
       // Reset form
@@ -360,10 +366,16 @@ const Distributors = () => {
     setSubmitStatus('idle');
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      const res = await fetch('/api/distributors', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (!res.ok) {
+        throw new Error('Failed to submit distributor application');
+      }
       
-      console.log('Distributor application submitted:', formData);
       setSubmitStatus('success');
       
       // Reset form

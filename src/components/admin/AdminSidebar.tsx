@@ -8,10 +8,16 @@ import {
   Settings,
   LogOut,
   ExternalLink,
+  Users,
+  Building2,
+  UserCheck,
 } from 'lucide-react';
 
 const navItems = [
   { href: '/admin/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+  { href: '/admin/leads', label: 'Leads & Inquiries', icon: Users },
+  { href: '/admin/distributors', label: 'Distributor Apps', icon: Building2 },
+  { href: '/admin/applications', label: 'Job Applications', icon: UserCheck },
   { href: '/admin/products', label: 'Products', icon: Package },
   { href: '/admin/content', label: 'Site Content', icon: Settings },
 ];

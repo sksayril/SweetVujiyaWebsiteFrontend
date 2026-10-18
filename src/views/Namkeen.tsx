@@ -1,10 +1,12 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Heart, Star, Flame, Loader2 } from 'lucide-react';
 import { useProducts, mapProductForDisplay } from '@/hooks/useProducts';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, EffectCoverflow } from 'swiper/modules';
+import ContactForPriceModal from '@/components/ContactForPriceModal';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-coverflow';
@@ -16,6 +18,18 @@ interface SpiceLevel {
 }
 
 const Namkeen = () => {
+  const [inquiryModalOpen, setInquiryModalOpen] = useState(false);
+  const [selectedProductForInquiry, setSelectedProductForInquiry] = useState<{
+    name: string;
+    image?: string;
+    category?: string;
+  } | null>(null);
+
+  const handleOpenInquiry = (item: { name: string; image?: string; category?: string }) => {
+    setSelectedProductForInquiry(item);
+    setInquiryModalOpen(true);
+  };
+
   const spiceLevels: SpiceLevel[] = [
     { level: 'Mild', color: 'text-green-500', bgColor: 'bg-green-100' },
     { level: 'Medium', color: 'text-yellow-500', bgColor: 'bg-yellow-100' },
@@ -218,7 +232,16 @@ const Namkeen = () => {
                 </div>
                 
                 <div className="flex items-center justify-center">
-                  <button className="bg-gradient-to-r from-gray-800 to-black hover:from-gray-900 hover:to-black text-white px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2">
+                  <button
+                    onClick={() =>
+                      handleOpenInquiry({
+                        name: item.name,
+                        image: item.image,
+                        category: item.category,
+                      })
+                    }
+                    className="bg-gradient-to-r from-gray-800 to-black hover:from-gray-900 hover:to-black text-white px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2"
+                  >
                     <span>Contact for Price</span>
                   </button>
                 </div>
@@ -239,15 +262,38 @@ const Namkeen = () => {
             Planning a party or event? Contact us for special bulk order rates and party packages
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-gray-800 px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-100 transition-colors duration-300 transform hover:scale-105">
+            <button
+              onClick={() =>
+                handleOpenInquiry({
+                  name: 'Bulk Orders & Party Packs',
+                  category: 'Bulk Namkeen Inquiry',
+                })
+              }
+              className="bg-white text-gray-800 px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-100 transition-colors duration-300 transform hover:scale-105"
+            >
               Contact for Bulk Orders
             </button>
-            <button className="border-2 border-white text-white hover:bg-white hover:text-gray-800 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105">
-              View Party Combos
+            <button
+              onClick={() =>
+                handleOpenInquiry({
+                  name: 'Party Combos & Namkeen Assortment',
+                  category: 'Party Combos',
+                })
+              }
+              className="border-2 border-white text-white hover:bg-white hover:text-gray-800 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105"
+            >
+              Inquire Party Combos
             </button>
           </div>
         </motion.div>
       </div>
+
+      {/* Inquiry / Contact for Price Modal */}
+      <ContactForPriceModal
+        isOpen={inquiryModalOpen}
+        onClose={() => setInquiryModalOpen(false)}
+        product={selectedProductForInquiry}
+      />
     </div>
   );
 };

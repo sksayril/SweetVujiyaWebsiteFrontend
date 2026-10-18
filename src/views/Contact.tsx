@@ -114,20 +114,33 @@ const Contact = () => {
     setSubmitStatus('idle');
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-    console.log('Form submitted:', formData);
+      const res = await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name.trim(),
+          phone: formData.phone.trim(),
+          email: formData.email.trim(),
+          productName: formData.subject,
+          message: formData.message.trim(),
+          type: 'contact',
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error('Failed to submit contact message');
+      }
+
       setSubmitStatus('success');
       
       // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      subject: '',
-      message: ''
-    });
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: ''
+      });
       
       // Show success message
       setTimeout(() => {
